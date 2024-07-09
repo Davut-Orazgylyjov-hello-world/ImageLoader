@@ -1,64 +1,66 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityFileSystem;
 
-[Serializable]
-public class PathImageLoader : MonoBehaviour
+namespace ImageLoader
 {
-    private enum UIType
+    [Serializable]
+    public class PathImageLoader : MonoBehaviour
     {
-        Image,
-        RawImage,
-        SpriteRenderer
-    }
-
-    [SerializeField] private UIType uiType;
-
-    [Header("path/filename.png")] [SerializeField]
-    private string imagePath;
-
-    public bool activateAtStart;
-
-    private void Start()
-    {
-        if (activateAtStart) Activate();
-    }
-
-    private void Activate()
-    {
-        var sprite = StreamingAssets.GetSprite(imagePath);
-        if(sprite == null) Debug.LogError($"Failed to get image for Object {transform.name}");
-
-        switch (uiType)
+        private enum UIType
         {
-            case UIType.Image:
-            {
-                var image = GetComponent<Image>();
-                image.sprite = sprite;
-                break;
-            }
-            case UIType.RawImage:
-            {
-                var rawImage = GetComponent<RawImage>();
-                rawImage.texture = sprite.texture;
-                break;
-            }
-            case UIType.SpriteRenderer:
-            {
-                var spriteRenderer = GetComponent<SpriteRenderer>();
-                spriteRenderer.sprite = sprite;
-                break;
-            }
-            default:
-                Debug.LogError($"The selected {uiType} type was not found on the object {transform.name}");
-                break;
+            Image,
+            RawImage,
+            SpriteRenderer
         }
-    }
 
-    public void ChangeImagePath(string newPath)
-    {
-        imagePath = newPath;
-        Activate();
+        [SerializeField] private UIType uiType;
+
+        [Header("path/filename.png")] [SerializeField]
+        private string imagePath;
+
+        public bool activateAtStart;
+
+        private void Start()
+        {
+            if (activateAtStart) Activate();
+        }
+
+        private void Activate()
+        {
+            var sprite = StreamingAssets.GetSprite(imagePath);
+            if (sprite == null) Debug.LogError($"Failed to get image for Object {transform.name}");
+
+            switch (uiType)
+            {
+                case UIType.Image:
+                {
+                    var image = GetComponent<Image>();
+                    image.sprite = sprite;
+                    break;
+                }
+                case UIType.RawImage:
+                {
+                    var rawImage = GetComponent<RawImage>();
+                    rawImage.texture = sprite.texture;
+                    break;
+                }
+                case UIType.SpriteRenderer:
+                {
+                    var spriteRenderer = GetComponent<SpriteRenderer>();
+                    spriteRenderer.sprite = sprite;
+                    break;
+                }
+                default:
+                    Debug.LogError($"The selected {uiType} type was not found on the object {transform.name}");
+                    break;
+            }
+        }
+
+        public void ChangeImagePath(string newPath)
+        {
+            imagePath = newPath;
+            Activate();
+        }
     }
 }

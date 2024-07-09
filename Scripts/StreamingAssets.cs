@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-namespace UnityFileSystem
+namespace ImageLoader
 {
     public static class StreamingAssets
     {
