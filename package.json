@@ -1,6 +1,6 @@
 {
   "name": "com.orazgylyjovfuteres.imageloader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Orazgylyjov ImageLoader",
   "description": "Ready functions for load images from folders",
   "unity": "2019.1",
