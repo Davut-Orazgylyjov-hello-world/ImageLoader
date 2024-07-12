@@ -21,7 +21,7 @@ namespace ImageLoader
             }
         }
         
-        private static Sprite ToSprite(this byte[] data)
+        public static Sprite ToSprite(this byte[] data)
         {
             var tex = new Texture2D(2, 2);
             tex.LoadImage(data);
@@ -83,7 +83,7 @@ namespace ImageLoader
             }
         }
 
-        private static string[] GetImagesPathFromContentFolder(string pathContentFolder)
+        public static string[] GetImagesPathFromContentFolder(string pathContentFolder)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace ImageLoader
         }
 
 
-        private static byte[] GetFileBytes(string fileFullPath)
+        public static byte[] GetFileBytes(string fileFullPath)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace ImageLoader
             }
         }
 
-        private static Texture2D GetTexture(string url)
+        public static Texture2D GetTexture(string url)
         {
             Texture2D result = new(2, 2)
             {
