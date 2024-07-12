@@ -82,6 +82,33 @@ namespace ImageLoader
                 return null;
             }
         }
+        
+        public static List<Sprite> GetImageFilesFromContendFolder(string pathToContentFolder)
+        {
+            try
+            {
+                pathToContentFolder = GetImagePath(pathToContentFolder);
+                List<Sprite> sprites = new List<Sprite>();
+
+                if (Directory.Exists(pathToContentFolder))
+                {
+                    string[] pathsToImages = GetImagesPathFromContentFolder(pathToContentFolder);
+                    foreach (string pathToImage in pathsToImages)
+                    {
+                        Texture2D texture = GetTextureByPath(pathToImage);
+                        if (texture != null)
+                            sprites.Add(GenerateSprite(texture));
+                    }
+                }
+
+                return sprites;
+            }
+            catch
+            {
+                Debug.LogError($"Failed to get sprites from contend dolder: {pathToContentFolder}");
+                return null;
+            }
+        }
 
         public static string[] GetImagesPathFromContentFolder(string pathContentFolder)
         {
