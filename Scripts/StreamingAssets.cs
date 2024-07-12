@@ -20,7 +20,7 @@ namespace ImageLoader
                 return null;
             }
         }
-        
+
         public static Sprite ToSprite(this byte[] data)
         {
             var tex = new Texture2D(2, 2);
@@ -29,7 +29,7 @@ namespace ImageLoader
             var sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), pivot, 100.0f);
             return sprite;
         }
-        
+
         private static string GetImagePath(string imagePath)
         {
             try
@@ -42,7 +42,7 @@ namespace ImageLoader
                 return null;
             }
         }
-        
+
         private static Texture2D GetTextureByPath(string path)
         {
             try
@@ -82,13 +82,13 @@ namespace ImageLoader
                 return null;
             }
         }
-        
-        public static List<Sprite> GetImageFilesFromContendFolder(string pathToContentFolder)
+
+        public static List<ImageFile> GetImageFilesFromContendFolder(string pathToContentFolder)
         {
             try
             {
                 pathToContentFolder = GetImagePath(pathToContentFolder);
-                List<Sprite> sprites = new List<Sprite>();
+                List<ImageFile> imageFiles = new List<ImageFile>();
 
                 if (Directory.Exists(pathToContentFolder))
                 {
@@ -96,16 +96,17 @@ namespace ImageLoader
                     foreach (string pathToImage in pathsToImages)
                     {
                         Texture2D texture = GetTextureByPath(pathToImage);
+                        byte[] data = GetFileBytes(pathToImage);
                         if (texture != null)
-                            sprites.Add(GenerateSprite(texture));
+                            imageFiles.Add(new ImageFile(data, pathToImage));
                     }
                 }
 
-                return sprites;
+                return imageFiles;
             }
             catch
             {
-                Debug.LogError($"Failed to get sprites from contend dolder: {pathToContentFolder}");
+                Debug.LogError($"Failed to get ImageFile from contend folder: {pathToContentFolder}");
                 return null;
             }
         }
