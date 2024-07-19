@@ -95,10 +95,8 @@ namespace ImageLoader
                     string[] pathsToImages = GetImagesPathFromContentFolder(pathToContentFolder);
                     foreach (string pathToImage in pathsToImages)
                     {
-                        Texture2D texture = GetTextureByPath(pathToImage);
                         byte[] data = GetFileBytes(pathToImage);
-                        if (texture != null)
-                            imageFiles.Add(new ImageFile(data, pathToImage));
+                        imageFiles.Add(new ImageFile(data, pathToImage));
                     }
                 }
 
