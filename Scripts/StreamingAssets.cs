@@ -78,7 +78,7 @@ namespace ImageLoader
             }
             catch
             {
-                Debug.LogError($"Failed to get sprites from contend dolder: {pathToContentFolder}");
+                Debug.LogError($"Failed to get sprites from contend folder: {pathToContentFolder}");
                 return null;
             }
         }
@@ -96,7 +96,8 @@ namespace ImageLoader
                     foreach (string pathToImage in pathsToImages)
                     {
                         byte[] data = GetFileBytes(pathToImage);
-                        imageFiles.Add(new ImageFile(data, pathToImage));
+                        if (data != null)
+                            imageFiles.Add(new ImageFile(data, pathToImage));
                     }
                 }
 
