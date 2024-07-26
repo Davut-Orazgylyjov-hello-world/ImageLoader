@@ -7,6 +7,7 @@ namespace ImageLoader
     public class LoadedImages : MonoBehaviour
     {
         public static LoadedImages Singleton { get; private set; }
+        [SerializeField] private string pathContentFolder = "Slides";
         public StorageImages storageImages;
 
         private void Awake()
@@ -30,7 +31,7 @@ namespace ImageLoader
         [ContextMenu("Load")]
         public void Load()
         {
-            storageImages.LoadImages("Slides");
+            storageImages.LoadImages(pathContentFolder);
         }
     }
 

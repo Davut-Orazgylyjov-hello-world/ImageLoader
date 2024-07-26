@@ -11,7 +11,7 @@ namespace ImageLoader
         {
             try
             {
-                byte[] imageBytes = GetFileBytes(GetImagePath(filePath));
+                byte[] imageBytes = GetFileBytes(CombineWithStreamingAssetsPath(filePath));
                 return imageBytes.ToSprite();
             }
             catch
@@ -30,7 +30,7 @@ namespace ImageLoader
             return sprite;
         }
 
-        private static string GetImagePath(string imagePath)
+        public static string CombineWithStreamingAssetsPath(string imagePath)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace ImageLoader
         {
             try
             {
-                pathToContentFolder = GetImagePath(pathToContentFolder);
+                pathToContentFolder = CombineWithStreamingAssetsPath(pathToContentFolder);
                 List<Sprite> sprites = new List<Sprite>();
 
                 if (Directory.Exists(pathToContentFolder))
@@ -87,7 +87,7 @@ namespace ImageLoader
         {
             try
             {
-                pathToContentFolder = GetImagePath(pathToContentFolder);
+                pathToContentFolder = CombineWithStreamingAssetsPath(pathToContentFolder);
                 List<ImageFile> imageFiles = new List<ImageFile>();
 
                 if (Directory.Exists(pathToContentFolder))

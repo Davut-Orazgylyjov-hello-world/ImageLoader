@@ -31,13 +31,13 @@ namespace ImageLoader
         private void Activate()
         {
             Sprite sprite = null;
-     
-            //TODO проверка есть ли Loaded Images и есть ли у него изображение по пути imagePath, если да то нижнюю строчку не используем и ставим спрайт
-            // if (GetSprite != null)
-            //     sprite = GetSprite(imagePath);
+            
+            //Take image from Func GetSprite
+            if (GetSprite != null)
+                sprite = GetSprite(StreamingAssets.CombineWithStreamingAssetsPath(imagePath));
             
             if(!sprite) 
-                StreamingAssets.GetSprite(imagePath);
+                sprite = StreamingAssets.GetSprite(imagePath);
             
             if (!sprite) Debug.LogError($"Failed to get image for Object {transform.name}");
 
