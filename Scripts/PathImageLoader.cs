@@ -14,6 +14,8 @@ namespace ImageLoader
             SpriteRenderer
         }
 
+        public static event Func<String, Sprite> GetSprite;
+
         [SerializeField] private UIType uiType;
 
         [Header("path/filename.png")] [SerializeField]
@@ -28,8 +30,16 @@ namespace ImageLoader
 
         private void Activate()
         {
-            var sprite = StreamingAssets.GetSprite(imagePath);
-            if (sprite == null) Debug.LogError($"Failed to get image for Object {transform.name}");
+            Sprite sprite = null;
+     
+            //TODO проверка есть ли Loaded Images и есть ли у него изображение по пути imagePath, если да то нижнюю строчку не используем и ставим спрайт
+            // if (GetSprite != null)
+            //     sprite = GetSprite(imagePath);
+            
+            if(!sprite) 
+                StreamingAssets.GetSprite(imagePath);
+            
+            if (!sprite) Debug.LogError($"Failed to get image for Object {transform.name}");
 
             switch (uiType)
             {

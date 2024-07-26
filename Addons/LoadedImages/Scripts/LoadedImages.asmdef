@@ -1,7 +1,9 @@
 {
-    "name": "UnityFileSystem",
+    "name": "LoadedImages",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:5e82cb97ff41eb846a9d7aa9437842c9"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
