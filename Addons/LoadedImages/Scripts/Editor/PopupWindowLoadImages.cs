@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ImageLoader
 {
+#if UNITY_EDITOR
     public class PopupWindowLoadImages : EditorWindow
     {
         private string streamingAssetsPath = "FilesFolderName/NextFolder";
@@ -31,4 +32,5 @@ namespace ImageLoader
             }
         }
     }
+#endif
 }
